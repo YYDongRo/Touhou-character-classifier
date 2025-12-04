@@ -8,24 +8,24 @@ This is a AI classfier that recognizes Hakurei Reimu(博丽灵梦), Kirisame Mar
 
 **Installation (Using terminal)**
 
-1. *Clone the repo*
+*1. Clone the repo*
 ```python
 git clone https://github.com/YYDongRo/Touhou_character_classifier.git
 cd Touhou_character_classifier
 ```
 
-2. *Create a virtual environment*
+*2. Create a virtual environment*
 ```python
 python3 -m venv .venv
 source .venv/bin/activate
 ```
 
-3. *Install dependencies*
+*3. Install dependencies*
 ```python
 pip install -r requirements.txt
 ```
 
-4. *Feel free to train the model yourself, but remember to place the dataset like shown below*
+*4. Feel free to train the model yourself, but remember to place the dataset like shown below*
 ```python
 (data/
   reimu/
@@ -33,18 +33,18 @@ pip install -r requirements.txt
   cirno/)
   ```
 
-5.  *Train the model*
+*5.  Train the model*
 ```pythonn
 python -m src.train
 ```
 
-6. *Ask it the Touhou Character that you don't know!*
+*6. Ask it the Touhou Character that you don't know!*
 ```python
 from src.inference import predict
 print(predict("path_to_image.jpg"))
 ```
 
-7. *Add Grad-CAM heatmap as your outcome*
+*7. Add Grad-CAM heatmap as your outcome*
 ```python
 from src.gradcam import get_gradcam
 import matplotlib.pyplot as plt
@@ -56,7 +56,7 @@ plt.axis("off")
 plt.show()
 ```
 
-8. *Neat web interface*
+*8. Neat web interface*
 ```python
 streamlit run app.py
 ```
