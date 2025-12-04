@@ -1,4 +1,4 @@
-***THOUHOU VISION AI***
+***TOUHOU VISION AI***
 
 
 **Introduction**
