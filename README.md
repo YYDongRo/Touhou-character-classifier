@@ -63,9 +63,9 @@ streamlit run app.py
 
 *Here are some examples of heatmap using Grad-CAM*:
 
-![Hakurei Reimu Grad-CAM](gradcam_examples/Figure_Reimu_001.png)
-![Kirisame Marisa Grad-CAM](gradcam_examples/Figure_Marisa_003.png)
-![Cirno Grad-CAM](gradcam_examples/Figure_Cirno_011.png)
+![Hakurei Reimu Grad-CAM](grad-cam_examples/Figure_Reimu_001.png)
+![Kirisame Marisa Grad-CAM](grad-cam_examples/Figure_Marisa_003.png)
+![Cirno Grad-CAM](grad-cam_examples/Figure_Cirno_011.png)
 
 
 
