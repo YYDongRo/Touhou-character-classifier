@@ -66,21 +66,21 @@ streamlit run app.py
 ## 博丽灵梦 (Hakurei Reimu)  
 **Reimu Grad-CAM Example**
 
-![Reimu Grad-CAM](gradcam_examples/Figure_Reimu_001.png)
+![Reimu Grad-CAM](grad-cam_examples/Figure_Reimu_001.png)
 
 ---
 
 ## 雾雨魔理沙 (Kirisame Marisa)  
 **Marisa Grad-CAM Example**
 
-![Marisa Grad-CAM](gradcam_examples/Figure_Marisa_003.png)
+![Marisa Grad-CAM](grad-cam_examples/Figure_Marisa_003.png)
 
 ---
 
 ## 琪露诺 (Cirno)  
 **Cirno Grad-CAM Example**
 
-![Cirno Grad-CAM](gradcam_examples/Figure_Cirno_011.png)
+![Cirno Grad-CAM](grad-cam_examples/Figure_Cirno_011.png)
 
 
 
