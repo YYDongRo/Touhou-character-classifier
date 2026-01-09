@@ -19,7 +19,6 @@ def get_gradcam(image_path):
     model.eval()
 
     target_layer = model.layer4[-1]
-
     activations = None
     gradients = None
 
@@ -27,12 +26,13 @@ def get_gradcam(image_path):
         nonlocal activations
         activations = o
 
-    def bwd_hook(m, gi, go):
+    def bwd_hook(m, gin, gout):
         nonlocal gradients
-        gradients = go[0]
+        gradients = gout[0]
 
+    # Better than register_backward_hook (deprecated-ish behavior)
     target_layer.register_forward_hook(fwd_hook)
-    target_layer.register_backward_hook(bwd_hook)
+    target_layer.register_full_backward_hook(bwd_hook)
 
     transform = transforms.Compose([
         transforms.Resize((224, 224)),
@@ -46,25 +46,29 @@ def get_gradcam(image_path):
     pred = out.argmax().item()
     pred_label = idx_to_class[pred]
 
-    model.zero_grad()
+    model.zero_grad(set_to_none=True)
     out[0, pred].backward()
 
-    act = activations.squeeze(0)
-    grad = gradients.squeeze(0)
-
-    weights = grad.mean(dim=(1, 2))
+    act = activations.squeeze(0)      # [C,H,W]
+    grad = gradients.squeeze(0)       # [C,H,W]
+    weights = grad.mean(dim=(1, 2))   # [C]
 
     cam = (weights[:, None, None] * act).sum(dim=0)
     cam = F.relu(cam)
 
-    cam -= cam.min()
-    cam /= cam.max()
+    # Normalize safely (avoid divide-by-zero)
+    cam_min, cam_max = cam.min(), cam.max()
+    cam = (cam - cam_min) / (cam_max - cam_min + 1e-8)
 
-    cam = cam.unsqueeze(0).unsqueeze(0)
-    cam = F.interpolate(cam, size=(224,224), mode="bilinear", align_corners=False)
-    cam = cam.squeeze().detach().numpy()
+    # cam currently corresponds to the 224x224 input.
+    # Resize cam to ORIGINAL image size for overlay.
+    orig_w, orig_h = img.size  # PIL is (W,H)
+    cam = cam.unsqueeze(0).unsqueeze(0)  # [1,1,H,W] (H,W here is layer spatial size)
+    cam = F.interpolate(cam, size=(orig_h, orig_w), mode="bilinear", align_corners=False)
+    cam = cam.squeeze().detach().cpu().numpy()  # [orig_h, orig_w]
 
     return cam, img, pred_label
+
 
 
 def generate_cam_overlay(image_path):
