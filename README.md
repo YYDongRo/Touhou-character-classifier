@@ -16,7 +16,6 @@ cd Touhou_character_classifier
 
 *2. Create a virtual environment*
 ```python
-python3 -m venv .venv
 source .venv/bin/activate
 ```
 
@@ -34,7 +33,7 @@ pip install -r requirements.txt
   ```
 
 *5.  Train the model*
-```pythonn
+```python
 python -m src.train
 ```
 
