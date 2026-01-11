@@ -36,8 +36,8 @@ streamlit run app.py
   marisa/
   cirno/)
   ```
-  
-*6.  Train the model*
+
+*6. Train the model*
 ```python
 python -m src.train
 ```
