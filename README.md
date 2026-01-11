@@ -16,7 +16,6 @@ cd Touhou_character_classifier
 
 *2. Create a virtual environment*
 ```python
-python3 -m venv .venv
 source .venv/bin/activate
 ```
 
@@ -25,7 +24,12 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-*4. Feel free to train the model yourself, but remember to place the dataset like shown below*
+*4. Web interface*
+```python
+streamlit run app.py
+```
+
+*5. Feel free to train the model yourself, but remember to place the dataset like shown below*
 ```python
 (data/
   reimu/
@@ -33,33 +37,12 @@ pip install -r requirements.txt
   cirno/)
   ```
 
-*5.  Train the model*
+*6.  Train the model*
 ```pythonn
 python -m src.train
 ```
 
-*6. Ask it the Touhou Character that you don't know!*
-```python
-from src.inference import predict
-print(predict("path_to_image.jpg"))
-```
 
-*7. Add Grad-CAM heatmap as your outcome*
-```python
-from src.gradcam import get_gradcam
-import matplotlib.pyplot as plt
-
-cam, img, label = get_gradcam("data/cirno/example.jpg/jpeg")
-plt.imshow(img)
-plt.imshow(cam, cmap='jet', alpha=0.4)
-plt.axis("off")
-plt.show()
-```
-
-*8. Neat web interface*
-```python
-streamlit run app.py
-```
 
 *Here are some examples of heatmap using Grad-CAM*:
 
